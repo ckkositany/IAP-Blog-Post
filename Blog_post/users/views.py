@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import UserRegisterForm
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -28,15 +27,6 @@ def profile(request):
 
 
 
-# def login_view(request):
-#     if request.method == 'POST':
-#         form = AuthenticationForm(data=request.POST)
-#         if form.is_valid():
-#             # Log the user in
-#             return redirect('home')  # Redirect to the home page after successful login
-#     else:
-#         form = AuthenticationForm()
 
-#     return render(request, 'users/login.html', {'form': form})
 
 

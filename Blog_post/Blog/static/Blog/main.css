@@ -82,3 +82,16 @@ body {
   .account-heading {
     font-size: 2.5rem;
   }
+
+  .logout-button {
+    background-color: transparent; /* Transparent background */
+    border: none; /* Remove border */
+    color: #007bff; /* Blue text color */
+    text-decoration: underline; /* Underline text */
+    cursor: pointer; /* Show pointer cursor on hover */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.logout-button:hover {
+    color: #0056b3; /* Darker blue color on hover */
+}
