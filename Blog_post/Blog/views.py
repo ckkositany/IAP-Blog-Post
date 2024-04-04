@@ -3,7 +3,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from django.views.generic import (ListView,
                                    DetailView,
-                                     CreateView)
+                                     CreateView,
+                                     UpdateView,
+                                     )
 from .models import Post
 
 def home(request):
@@ -31,6 +33,17 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     fields = ['title', 'content']
 
     #instantiate the current logged user before postting new blog
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+   
+
+   #Handles the updateView
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    model = Post
+    fields = ['title', 'content']
+
+    #instantiate the current logged user before updating the current blog
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
