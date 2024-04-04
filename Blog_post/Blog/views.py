@@ -1,6 +1,9 @@
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
-from django.views.generic import ListView, DetailView
+from django.views.generic import (ListView,
+                                   DetailView,
+                                     CreateView)
 from .models import Post
 
 def home(request):
@@ -21,6 +24,16 @@ class PostListView(ListView):
 #Handles detailview of posts
 class PostDetailView(DetailView):
     model = Post
+
+#Handles the createView
+class PostCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    fields = ['title', 'content']
+
+    #instantiate the current logged user before postting new blog
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
    
 
 def about(request):
